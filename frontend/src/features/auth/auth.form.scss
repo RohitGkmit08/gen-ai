@@ -4,18 +4,32 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #121212;
 
     .form-container{
-        min-width: 350px;
+        min-width: 380px;
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: 1.5rem;
+        background-color: #1a1a1a;
+        padding: 2.5rem;
+        border-radius: 1.5rem;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        border: 1px solid #2a2a2a;
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: whitesmoke;
+        }
     }
 
     form {
         display: flex;
         flex-direction: column;
-        gap: 0.75rem;
+        gap: 1.25rem;
     }
 
     .input-group{
@@ -23,12 +37,45 @@ main{
         flex-direction: column;
         gap: 0.5rem;
 
+        label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #aaa;
+        }
+
         input {
-            border: none;
+            border: 1px solid #333;
             outline: none;
             padding-inline: 1rem;
-            padding-block: 0.75rem;
+            padding-block: 0.8rem;
             border-radius: 0.75rem;
+            background-color: #222;
+            color: white;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+
+            &::placeholder {
+                color: #555;
+            }
+        }
+    }
+
+    p {
+        font-size: 0.9rem;
+        text-align: center;
+        margin-top: 0.5rem;
+        color: #888;
+
+        a {
+            color: #78ffd6;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+
+            &:hover {
+                color: #a8ff78;
+                text-decoration: underline;
+            }
         }
     }
 }

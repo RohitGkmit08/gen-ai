@@ -1,10 +1,11 @@
+import { Link } from "react-router"
 import "../auth.form.scss"
 
 const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
   }
-  
+
   return (
     <div>
         <main>
@@ -13,17 +14,17 @@ const Register = () => {
 
                 <form onSubmit={handleSubmit}>
                     <div className="input-group">
-                        <label htmlFor="username">Username : </label>
+                        <label htmlFor="username">Username</label>
                         <input type="text" id="username" name="username" placeholder="Enter your username"/>
                     </div>
 
                     <div className="input-group">
-                        <label htmlFor="email">Email : </label>
+                        <label htmlFor="email">Email</label>
                         <input type="email" id="email" name="email" placeholder="Enter your email"/>
                     </div>
 
                     <div className="input-group">
-                        <label htmlFor="password">Password : </label>
+                        <label htmlFor="password">Password</label>
                         <input type="password" id="password" name="password" placeholder="Enter your password"/>
                     </div>
 
@@ -31,6 +32,10 @@ const Register = () => {
                         Register
                     </button>
                 </form>
+
+                <p>
+                    Already have an account? <Link to="/login">Login</Link>
+                </p>
             </div>
         </main>
     </div>
