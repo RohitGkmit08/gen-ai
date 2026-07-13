@@ -42,7 +42,10 @@ async function registerUserController(req, res) {
             }
         );
 
-        res.cookie("token", token);
+        res.cookie("token", token, {
+            httpOnly: true,
+            maxAge: 24 * 60 * 60 * 1000 // 1 day
+        });
 
         return res.status(201).json({
             message: "User created successfully",
@@ -62,16 +65,29 @@ async function registerUserController(req, res) {
 }
 
 async function getMeController (req, res) {
-    const user = await userModel.findById(req.user.id);
+    try {
+        const user = await userModel.findById(req.user.id);
 
-    res.status(200).json({
-        message: "user details fetched successfully",
-        user : {
-            id: user._id,
-            username : user.username,
-            email : user.email
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found"
+            });
         }
-    })
+
+        return res.status(200).json({
+            message: "user details fetched successfully",
+            user : {
+                id: user._id,
+                username : user.username,
+                email : user.email
+            }
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            message: "Internal server error"
+        });
+    }
 }
 
 async function loginUserController(req, res) {
@@ -109,7 +125,10 @@ async function loginUserController(req, res) {
             {expiresIn: "1d"}
         );
 
-        res.cookie("token", token);
+        res.cookie("token", token, {
+            httpOnly: true,
+            maxAge: 24 * 60 * 60 * 1000 // 1 day
+        });
 
         return res.status(200).json({
             message: "Logged in successfully",
@@ -136,7 +155,9 @@ async function logoutUserController(req, res) {
             await tokenBlocklistModel.create({ token });
         }
 
-        res.clearCookie("token");
+        res.clearCookie("token", {
+            httpOnly: true
+        });
 
         return res.status(200).json({
             message: "User logged out successfully"
