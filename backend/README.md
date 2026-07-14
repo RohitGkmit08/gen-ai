@@ -1,13 +1,13 @@
-# ResumeAI Frontend
+# ResumeAI Backend
 
-This is the frontend client application for the **Gen-AI Resume Rater & Optimizer** project.
+This is the backend server application for the **Gen-AI Resume Rater & Optimizer** project.
 
 ## Tech Stack
-- React.js (v19)
-- Vite
-- React Router (v8)
-- Sass (SCSS)
-- Axios
+- Node.js
+- Express
+- MongoDB / Mongoose
+- JSON Web Token (JWT) & bcryptjs
+- cookie-parser
 
 ## Setup & Run
 For full installation and configuration steps, please refer to the main [README.md at the root of the repository](file:///Users/rohitsinha/Desktop/genai/README.md).
