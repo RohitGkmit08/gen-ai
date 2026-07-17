@@ -9,7 +9,7 @@ export const AuthProvider = ({children}) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const checkSession = async () => {
+        const getAndsetUser = async () => {
             try {
                 const data = await getMe();
                 if (data && data.user) {
@@ -21,7 +21,7 @@ export const AuthProvider = ({children}) => {
                 setLoading(false);
             }
         };
-        checkSession();
+        getAndsetUser();
     }, []);
 
     return(

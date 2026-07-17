@@ -1,5 +1,5 @@
 import { Navigate } from "react-router";
-import { useAuth } from "../context/useAuth";
+import { useAuth } from "../hooks/useAuth";
 
 const GuestRoute = ({ children }) => {
     const { user, loading } = useAuth();

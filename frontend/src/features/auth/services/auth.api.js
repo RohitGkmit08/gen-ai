@@ -1,11 +1,9 @@
-import axios from "axios";
+import apiClient from "../../../services/apiClient.js";
 
 export async function register({username, email, password}) {
     try{
-        const response = await axios.post("http://localhost:3000/api/auth/register" , {
+        const response = await apiClient.post("/api/auth/register" , {
             username, email, password
-        }, {
-            withCredentials: true
         })
 
         return response.data;
@@ -16,15 +14,10 @@ export async function register({username, email, password}) {
     }
 }
 
-// the register API was also setting token into cookies.
-// but by default axios it does got give access of cookies to server, so we use  withCredentials:true
-
 export async function login({email, password}){
     try{
-        const response = await axios.post("http://localhost:3000/api/auth/login", {
+        const response = await apiClient.post("/api/auth/login", {
             email, password
-        }, {
-            withCredentials: true
         })
 
         return response.data
@@ -36,9 +29,7 @@ export async function login({email, password}){
 
 export async function logout(){
     try{
-        const response = await axios.post("http://localhost:3000/api/auth/logout", {}, {
-            withCredentials: true
-        })
+        const response = await apiClient.post("/api/auth/logout", {})
 
         return response.data
 
@@ -50,9 +41,7 @@ export async function logout(){
 
 export async function getMe(){
     try{
-        const response = await axios.get("http://localhost:3000/api/auth/get-me", {
-            withCredentials:true
-        })
+        const response = await apiClient.get("/api/auth/get-me")
 
         return response.data
         
