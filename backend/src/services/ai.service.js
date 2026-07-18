@@ -93,5 +93,6 @@ async function generateInterviewReport ({resume, selfDescription, jobDescription
     })
 
     console.log(JSON.stringify(JSON.parse(response.text), null, 2))
+    return JSON.parse(response.text)
 }
 module.exports = {invokeAI, generateInterviewReport}

@@ -56,7 +56,7 @@ const preparationPlanSchema = new mongoose.Schema({
         type: [String],
         default: []
     }
-}, { _id: false });
+}, { _id: false })
 
 const interviewReportSchema = new mongoose.Schema({
     jobDescription: {
@@ -78,6 +78,10 @@ const interviewReportSchema = new mongoose.Schema({
         max: [100, "Match score cannot exceed 100"],
         required: [true, "Match score is required"]
     },
+    strengths: {
+        type: [String],
+        default: []
+    },
     technicalQuestions: {
         type: [technicalQuestionSchema],
         default: []
@@ -93,6 +97,10 @@ const interviewReportSchema = new mongoose.Schema({
     preparationPlan: {
         type: [preparationPlanSchema],
         default: []
+    },
+    users: {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"users"
     }
 }, { timestamps: true });
 
