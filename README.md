@@ -146,3 +146,10 @@ npm install
 npm run dev
 ```
 *Frontend dev server will start running on [http://localhost:5173](http://localhost:5173).*
+
+---
+
+## Author & License
+
+Developed as part of the **Gen-AI Resume Rater & Interview Optimizer** project.
+Distributed under the MIT License.
