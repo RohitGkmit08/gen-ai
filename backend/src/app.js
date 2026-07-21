@@ -1,10 +1,8 @@
-/**
- * Express Application Configuration
- * Initializes middleware, CORS policy, cookie parser, and primary API route handlers.
- */
+
+const path = require("path");
+require("dotenv").config({ path: path.join(__dirname, "../.env") });
 const express = require("express");
 const cookieParser = require("cookie-parser");
-require("dotenv").config();
 const cors = require("cors");
 const authRouter = require("./routes/auth.routes.js");
 const interviewRouter = require("./routes/interview.routes.js");

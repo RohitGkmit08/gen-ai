@@ -1,18 +1,19 @@
-const {GoogleGenAI} = require("@google/genai")
-const {z} = require("zod");
-const ai =  new GoogleGenAI({
-    apiKey : process.env.GOOGLE_GENAI_API_KEY
-})
+const { GoogleGenAI } = require("@google/genai");
+const { z } = require("zod");
+
+const ai = new GoogleGenAI({
+    apiKey: process.env.GOOGLE_GENAI_API_KEY
+});
 
 async function invokeAI() {
     try {
         const res = await ai.models.generateContent({
-            model: "gemini-3.5-flash",
+            model: "gemini-3.5-flash-lite",
             contents: "hello gemeni. What is interview ? "
-        })
-        console.log("AI Response:", res.text)
+        });
+        console.log("AI Response:", res.text);
     } catch (err) {
-        console.error("AI Error:", err.message || err)
+        console.error("AI Error:", err.message || err);
     }
 }   
 
@@ -42,8 +43,8 @@ const interviewReportSchema = z.object({
         z.object({
             question: z.string().describe("Behavioral interview question tailored to the candidate profile and job role."),
             intention: z.string().describe("The behavior, skill, or trait the interviewer wants to evaluate."),
-
-            answer: z.string().describe("Recommended answer strategy, preferably using the STAR method.")})
+            answer: z.string().describe("Recommended answer strategy, preferably using the STAR method.")
+        })
     ).describe(
         "Behavioral interview questions with their purpose and answering strategy."
     ),
@@ -51,7 +52,6 @@ const interviewReportSchema = z.object({
     skillGaps: z.array(
         z.object({
             skill: z.string().describe("A skill or technology that the candidate lacks or needs stronger knowledge in for this role."),
-
             severity: z.enum(["low","medium","high"]).describe(
                 "How important this missing skill is for succeeding in the role."
             )
@@ -64,7 +64,6 @@ const interviewReportSchema = z.object({
         z.object({
             day: z.number().describe("Day number in the preparation schedule."),
             focus: z.string().describe("Primary topic or area to study on this day."),
-
             tasks: z.array(
                 z.string().describe("A specific task or activity to complete.")
             ).describe(
@@ -76,23 +75,23 @@ const interviewReportSchema = z.object({
     )
 });
 
-async function generateInterviewReport ({resume, selfDescription, jobDescription}) {
-
+async function generateInterviewReport ({ resume, selfDescription, jobDescription }) {
     const prompt = `Generate an interview report for a candidate with the following details:
         Resume: ${resume},
         Self Description: ${selfDescription},
         Job Description: ${jobDescription}
-    `
+    `;
+
     const response = await ai.models.generateContent({
-        model: "gemini-3.5-flash",
+        model: "gemini-3.5-flash-lite",
         contents: prompt,
         config: {
             responseMimeType: "application/json",
             responseJsonSchema: interviewReportSchema.toJSONSchema()
         }
-    })
+    });
 
-    console.log(JSON.stringify(JSON.parse(response.text), null, 2))
-    return JSON.parse(response.text)
+    return JSON.parse(response.text);
 }
-module.exports = {invokeAI, generateInterviewReport}
+
+module.exports = { invokeAI, generateInterviewReport };
