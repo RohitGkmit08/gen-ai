@@ -4,6 +4,7 @@ import Register from "./features/auth/pages/Register.jsx"
 import ProtectedRoute from "./features/auth/components/ProtectedRoute.jsx"
 import GuestRoute from "./features/auth/components/GuestRoute.jsx"
 import Home from "./features/interview/pages/Home.jsx";
+import Interview from "./features/interview/pages/Interview.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -18,6 +19,12 @@ export const router = createBrowserRouter([
         path:"/",
         element: <ProtectedRoute>
             <Home/>
+        </ProtectedRoute>
+    },
+    {
+        path:"/interview/:interviewId",
+        element: <ProtectedRoute>
+            <Interview/>
         </ProtectedRoute>
     }
 ])

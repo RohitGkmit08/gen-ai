@@ -1,0 +1,441 @@
+.interview-page {
+    min-height: 100vh;
+    min-width: 100%;
+    background-color: #121212;
+    padding: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width: 1024px) {
+        padding: 1.5rem 1rem;
+    }
+
+    .interview-dashboard {
+        width: 100%;
+        max-width: 1280px;
+        display: grid;
+        grid-template-columns: 260px 1fr 300px;
+        gap: 2rem;
+        align-items: start;
+
+        @media (max-width: 1024px) {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+    }
+
+    // Common Panel Design
+    .section-tabs, .section-content, .section-stats .stats-box {
+        background-color: #1a1a1a;
+        border: 1px solid #2a2a2a;
+        border-radius: 1.25rem;
+        padding: 2rem;
+        box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.25);
+    }
+
+    // SECTION 1: Left Tabs
+    .section-tabs {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        .tabs-header {
+            h3 {
+                font-size: 1.2rem;
+                font-weight: 700;
+                color: whitesmoke;
+                margin-bottom: 0.25rem;
+            }
+            p {
+                font-size: 0.85rem;
+                color: #888;
+            }
+        }
+
+        .tab-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+
+            .tab-btn {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                padding: 1rem 1.25rem;
+                background: transparent;
+                border: 1px solid transparent;
+                border-radius: 0.75rem;
+                color: #aaa;
+                font-size: 0.95rem;
+                font-weight: 600;
+                text-align: left;
+                cursor: pointer;
+                transition: all 0.3s ease;
+
+                .tab-icon {
+                    font-size: 1.2rem;
+                }
+
+                &:hover {
+                    color: whitesmoke;
+                    background-color: #222;
+                }
+
+                &.active {
+                    color: #121212;
+                    background-color: palegreen;
+                    border-color: palegreen;
+                    box-shadow: 0 4px 15px rgba(152, 251, 152, 0.2);
+
+                    .tab-icon {
+                        filter: brightness(0.1);
+                    }
+                }
+            }
+        }
+    }
+
+    // SECTION 2: Middle Content Panel
+    .section-content {
+        min-height: 600px;
+        display: flex;
+        flex-direction: column;
+
+        .content-header {
+            border-bottom: 1px solid #2a2a2a;
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+
+            h2 {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: whitesmoke;
+                margin-bottom: 0.5rem;
+            }
+            .tab-subtitle {
+                font-size: 0.9rem;
+                color: #888;
+            }
+        }
+
+        .content-scrollable {
+            flex-grow: 1;
+            overflow-y: auto;
+            max-height: 550px;
+            padding-right: 0.5rem;
+
+            // Scrollbar customization
+            &::-webkit-scrollbar {
+                width: 6px;
+            }
+            &::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            &::-webkit-scrollbar-thumb {
+                background: #333;
+                border-radius: 4px;
+            }
+            &::-webkit-scrollbar-thumb:hover {
+                background: #444;
+            }
+        }
+    }
+
+    // Questions List accordion styling
+    .questions-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .question-card {
+            border: 1px solid #2a2a2a;
+            background-color: #222;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease;
+
+            &:hover {
+                border-color: #3e3e3e;
+                background-color: #262626;
+            }
+
+            &.expanded {
+                border-color: rgba(152, 251, 152, 0.4);
+                background-color: #222;
+            }
+
+            .question-summary {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                padding: 1.25rem;
+
+                .question-number {
+                    font-size: 0.85rem;
+                    font-weight: 700;
+                    background-color: #333;
+                    color: palegreen;
+                    padding: 0.25rem 0.5rem;
+                    border-radius: 0.4rem;
+                }
+
+                h4 {
+                    flex-grow: 1;
+                    font-size: 0.95rem;
+                    font-weight: 600;
+                    color: whitesmoke;
+                    line-height: 1.4;
+                }
+
+                .arrow-icon {
+                    font-size: 0.75rem;
+                    color: #666;
+                    transition: transform 0.2s ease;
+                }
+            }
+
+            .question-details {
+                border-top: 1px solid #2a2a2a;
+                padding: 1.25rem;
+                background-color: #1a1a1a;
+                display: flex;
+                flex-direction: column;
+                gap: 1.25rem;
+
+                .detail-section {
+                    h5 {
+                        font-size: 0.8rem;
+                        font-weight: 700;
+                        text-transform: uppercase;
+                        letter-spacing: 0.05em;
+                        color: palegreen;
+                        margin-bottom: 0.5rem;
+                    }
+
+                    p {
+                        font-size: 0.9rem;
+                        color: #ccc;
+                        line-height: 1.6;
+                    }
+                }
+            }
+        }
+    }
+
+    // Roadmap timeline styling
+    .roadmap-timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        padding-left: 0.5rem;
+
+        .timeline-day-card {
+            display: flex;
+            gap: 1.5rem;
+            position: relative;
+
+            &::before {
+                content: '';
+                position: absolute;
+                left: 32px;
+                top: 45px;
+                bottom: -30px;
+                width: 2px;
+                background-color: #2a2a2a;
+            }
+
+            &:last-child::before {
+                display: none;
+            }
+
+            .day-badge {
+                flex-shrink: 0;
+                width: 66px;
+                height: 36px;
+                background-color: #222;
+                border: 1px solid #333;
+                border-radius: 0.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.85rem;
+                font-weight: 700;
+                color: palegreen;
+            }
+
+            .day-content {
+                flex-grow: 1;
+                background-color: #222;
+                border: 1px solid #2a2a2a;
+                border-radius: 0.75rem;
+                padding: 1.25rem;
+
+                h4 {
+                    font-size: 1.05rem;
+                    font-weight: 600;
+                    color: whitesmoke;
+                    margin-bottom: 1rem;
+                }
+
+                .tasks-list {
+                    list-style: none;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.75rem;
+
+                    .task-item {
+                        display: flex;
+                        align-items: flex-start;
+                        gap: 0.75rem;
+                        cursor: pointer;
+
+                        input[type="checkbox"] {
+                            margin-top: 0.25rem;
+                            accent-color: palegreen;
+                            cursor: pointer;
+                        }
+
+                        label {
+                            font-size: 0.9rem;
+                            color: #bbb;
+                            line-height: 1.4;
+                            cursor: pointer;
+                            transition: color 0.2s ease;
+                        }
+
+                        input[type="checkbox"]:checked + label {
+                            color: #555;
+                            text-decoration: line-through;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // SECTION 3: Right Stats Panel
+    .section-stats {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+
+        .stats-box {
+            h4 {
+                font-size: 1.05rem;
+                font-weight: 700;
+                color: whitesmoke;
+                margin-bottom: 1.5rem;
+                border-bottom: 1px solid #2a2a2a;
+                padding-bottom: 0.75rem;
+            }
+        }
+
+        // Circular score ring
+        .match-score-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            h4 {
+                width: 100%;
+                text-align: left;
+            }
+
+            .score-ring-wrapper {
+                position: relative;
+                width: 120px;
+                height: 120px;
+                margin-block: 1rem;
+
+                .score-ring {
+                    transform: rotate(-90deg);
+
+                    circle {
+                        fill: transparent;
+                    }
+
+                    .ring-bg {
+                        stroke: #222;
+                    }
+
+                    .ring-bar {
+                        stroke: palegreen;
+                        stroke-linecap: round;
+                        transition: stroke-dashoffset 0.6s ease;
+                    }
+                }
+
+                .score-number {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    font-size: 1.5rem;
+                    font-weight: 800;
+                    color: whitesmoke;
+                }
+            }
+
+            .score-description {
+                font-size: 0.85rem;
+                color: #888;
+                text-align: center;
+                line-height: 1.4;
+                margin-top: 0.75rem;
+            }
+        }
+
+        // Skill gaps box
+        .skill-gaps-box {
+            .skills-list {
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+
+                .skill-gap-item {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    background-color: #222;
+                    padding: 0.8rem 1rem;
+                    border-radius: 0.75rem;
+                    border: 1px solid #2a2a2a;
+
+                    .skill-name {
+                        font-size: 0.85rem;
+                        font-weight: 600;
+                        color: #ddd;
+                    }
+
+                    .severity-badge {
+                        font-size: 0.75rem;
+                        font-weight: 700;
+                        text-transform: uppercase;
+                        padding: 0.25rem 0.6rem;
+                        border-radius: 0.4rem;
+                        
+                        &.high {
+                            background-color: rgba(255, 77, 77, 0.1);
+                            color: #ff4d4d;
+                            border: 1px solid rgba(255, 77, 77, 0.2);
+                        }
+
+                        &.medium {
+                            background-color: rgba(255, 165, 0, 0.1);
+                            color: orange;
+                            border: 1px solid rgba(255, 165, 0, 0.2);
+                        }
+
+                        &.low {
+                            background-color: rgba(100, 149, 237, 0.1);
+                            color: #6495ed;
+                            border: 1px solid rgba(100, 149, 237, 0.2);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
