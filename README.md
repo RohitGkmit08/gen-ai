@@ -1,6 +1,6 @@
 # Gen-AI Resume Rater & Interview Optimizer
 
-A modern full-stack web application powered by **Google Gemini 3.5 Flash** designed to parse resumes, evaluate job description compatibility, detect skill gaps, generate tailored technical & behavioral interview questions, and create personalized step-by-step preparation roadmaps.
+A modern full-stack web application powered by **Google Gemini 3.5 Flash-lite** designed to parse resumes, evaluate job description compatibility, detect skill gaps, generate tailored technical & behavioral interview questions, and create personalized step-by-step preparation roadmaps.
 
 ---
 
@@ -31,7 +31,7 @@ A modern full-stack web application powered by **Google Gemini 3.5 Flash** desig
 
 ### Backend
 - **Runtime & Framework**: [Node.js](https://nodejs.org/) with [Express.js](https://expressjs.com/) (v5)
-- **Generative AI SDK**: [`@google/genai`](https://www.npmjs.com/package/@google/genai) using model `gemini-3.5-flash`
+- **Generative AI SDK**: [`@google/genai`](https://www.npmjs.com/package/@google/genai) using model `gemini-3.5-flash-lite`
 - **Schema Validation**: [Zod](https://zod.dev/) & `zod-to-json-schema` for structured AI output parsing
 - **Database & Modeling**: [MongoDB](https://www.mongodb.com/) via [Mongoose](https://mongoosejs.com/)
 - **File & PDF Processing**: `multer` (memory storage) & `pdf-parse`
@@ -77,10 +77,10 @@ genai/
     ├── src/
     │   ├── features/
     │   │   ├── auth/                # Auth components, context, forms, hooks & pages
-    │   │   └── ai/                  # AI dashboard & report view components (in progress)
+    │   │   └── interview/           # Interview pages (Home, Interview dashboard) & styles
     │   ├── services/
     │   │   └── apiClient.js         # Centralized Axios instance
-    │   ├── styles/                  # SCSS styles and themes
+    │   ├── styles/                  # Global SCSS styles and themes
     │   ├── app.routes.jsx           # React Router route configuration
     │   ├── App.jsx                  # Root App component
     │   └── main.jsx                 # Client entry point
@@ -98,7 +98,7 @@ genai/
 | `POST` | `/api/auth/register` | Public | Register a new user (`email`, `username`, `password`) |
 | `POST` | `/api/auth/login` | Public | Authenticate credentials & set JWT token |
 | `GET` | `/api/auth/get-me` | Private | Retrieve current user profile |
-| `GET` | `/api/auth/logout` | Private | Blacklist JWT token & clear auth cookie |
+| `POST` | `/api/auth/logout` | Private | Blacklist JWT token & clear auth cookie |
 
 ### Interview & AI Evaluation (`/api/interview`)
 | Method | Endpoint | Access | Description |
