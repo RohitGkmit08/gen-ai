@@ -80,10 +80,28 @@
                 resize: none;
             }
 
+            .error-message {
+                color: #ff6b6b;
+                background-color: rgba(255, 107, 107, 0.1);
+                border: 1px solid rgba(255, 107, 107, 0.2);
+                padding: 0.75rem 1rem;
+                border-radius: 0.75rem;
+                font-size: 0.85rem;
+                line-height: 1.4;
+                text-align: center;
+            }
+
             button {
                 width: 100%;
                 margin-top: auto;
                 padding-block: 0.9rem;
+
+                &:disabled {
+                    background-color: #333;
+                    color: #666;
+                    cursor: not-allowed;
+                    transform: none !important;
+                }
             }
         }
     }
