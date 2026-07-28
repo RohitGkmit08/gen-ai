@@ -56,7 +56,7 @@ genai/
 │   │   │   └── db.js                 # MongoDB connection setup
 │   │   ├── controllers/
 │   │   │   ├── auth.controller.js    # Auth request handlers (register, login, logout, getMe)
-│   │   │   └── interview.controller.js # PDF parsing & AI report generation handler
+│   │   │   └── interview.controller.js # PDF parsing, listing, and AI report generation handlers
 │   │   ├── middleware/
 │   │   │   ├── auth.middleware.js   # JWT authentication & token blacklist guard
 │   │   │   └── file.middleware.js   # Multer file upload middleware (3MB PDF limit)
@@ -77,7 +77,18 @@ genai/
     ├── src/
     │   ├── features/
     │   │   ├── auth/                # Auth components, context, forms, hooks & pages
-    │   │   └── interview/           # Interview pages (Home, Interview dashboard) & styles
+    │   │   └── interview/           # Interview Prep Feature
+    │   │       ├── hooks/
+    │   │       │   └── useInterview.js # Hook managing report creation, retrieval, and lists
+    │   │       ├── services/
+    │   │       │   └── interview.api.js # Client API services for backend interview routes
+    │   │       ├── pages/
+    │   │       │   ├── Home.jsx        # Landing page with resume parser & JD input form
+    │   │       │   └── Interview.jsx   # Preparation dashboard (tabs, matching score, skill gaps)
+    │   │       ├── style/
+    │   │       │   ├── home.scss
+    │   │       │   └── interview.scss
+    │   │       └── interview.context.jsx # React context provider for interview feature state
     │   ├── services/
     │   │   └── apiClient.js         # Centralized Axios instance
     │   ├── styles/                  # Global SCSS styles and themes
@@ -104,6 +115,8 @@ genai/
 | Method | Endpoint | Access | Description |
 | :--- | :--- | :--- | :--- |
 | `POST` | `/api/interview/` | Private | Upload resume (PDF) + `jobDescription` + `selfDescription` (optional) to generate AI evaluation report |
+| `GET` | `/api/interview/report/:interviewId` | Private | Fetch details of a specific interview report by its ID |
+| `GET` | `/api/interview/` | Private | Retrieve list of all reports created by the user (excluding large text blocks) |
 
 #### Sample Request (`POST /api/interview/`):
 - **Content-Type**: `multipart/form-data`
@@ -147,9 +160,3 @@ npm run dev
 ```
 *Frontend dev server will start running on [http://localhost:5173](http://localhost:5173).*
 
----
-
-## Author & License
-
-Developed as part of the **Gen-AI Resume Rater & Interview Optimizer** project.
-Distributed under the MIT License.
